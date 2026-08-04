@@ -1,112 +1,87 @@
-SQL Data Warehouse Project
+# SQL Data Warehouse Project
 
-This project is a SQL data warehouse built using SQL Server and SQL Server Management Studio (SSMS).
+A complete SQL Server data warehouse project built using the **Bronze, Silver, and Gold architecture**.
 
-I completed it to practise data warehousing, ETL processes, data cleaning, data quality checks, and dimensional modelling. The project combines data from CRM and ERP source systems and processes it through Bronze, Silver, and Gold layers.
+This project demonstrates data loading, cleaning, transformation, dimensional modelling, and data-quality testing using CRM and ERP source data.
 
-Data Architecture
+## Data Architecture
 
+![Data Architecture](docs/data_architecture.png)
 
+- **Bronze Layer:** Stores raw data imported from CSV files.
+- **Silver Layer:** Cleans, standardizes, and transforms the data.
+- **Gold Layer:** Provides business-ready fact and dimension views.
 
-The project follows the Medallion Architecture:
+## Data Model
 
-Bronze Layer: Stores raw CRM and ERP data imported from CSV files.
+![Data Model](docs/data_model.png)
 
-Silver Layer: Cleans, standardizes, and transforms the raw data.
+The Gold layer uses a star schema with:
 
-Gold Layer: Provides business-ready fact and dimension views for analysis.
+- `gold.fact_sales`
+- `gold.dim_customers`
+- `gold.dim_products`
 
-Data Model
+## Project Work
 
+- Created Bronze, Silver, and Gold schemas
+- Loaded CRM and ERP data from CSV files
+- Cleaned missing, duplicate, and invalid values
+- Standardized customer, product, and sales data
+- Created stored procedures for data loading
+- Built fact and dimension views
+- Performed data-quality checks
+- Created architecture and data-model diagrams
 
+## Tools Used
 
-The Gold layer uses a star schema containing:
+- SQL Server
+- SQL Server Management Studio
+- T-SQL
+- CSV files
+- Draw.io
+- GitHub
 
-gold.fact_sales
+## Project Structure
 
-gold.dim_customers
-
-gold.dim_products
-
-What I Did
-
-Created the database and Bronze, Silver, and Gold schemas
-
-Loaded CRM and ERP data from CSV files
-
-Cleaned and standardized customer, product, location, and sales data
-
-Handled duplicates, missing values, invalid dates, and inconsistent values
-
-Built stored procedures for data loading and transformation
-
-Created customer and product dimensions
-
-Created the sales fact view
-
-Performed data quality and referential-integrity checks
-
-Designed the data architecture and star-schema diagrams
-
-Tools Used
-
-SQL Server
-
-SQL Server Management Studio
-
-T-SQL
-
-CSV files
-
-Draw.io
-
-Git and GitHub
-
-Repository Structure
-
-data-warehouse-project/
+```text
+sql-data-warehouse-project/
 │
-├── datasets/                 # CRM and ERP source files
-├── docs/                     # Architecture, data-flow, and data-model files
+├── docs/
+│   ├── data_architecture.png
+│   └── data_model.png
+│
 ├── scripts/
-│   ├── bronze/               # Raw-data loading scripts
-│   ├── silver/               # Cleaning and transformation scripts
-│   └── gold/                 # Fact and dimension views
-├── tests/                    # Silver and Gold quality checks
-├── README.md
-├── LICENSE
-└── .gitignore
+│   ├── init_database.sql
+│   ├── bronze/
+│   ├── silver/
+│   └── gold/
+│
+├── tests/
+│   ├── quality_checks_silver.sql
+│   └── quality_checks_gold.sql
+│
+└── README.md
+```
 
-How to Run the Project
+## How to Run
 
-Install SQL Server and SQL Server Management Studio.
+1. Open SQL Server Management Studio.
+2. Run `scripts/init_database.sql`.
+3. Run the Bronze-layer scripts.
+4. Execute `bronze.load_bronze`.
+5. Run the Silver-layer scripts.
+6. Execute `silver.load_silver`.
+7. Run the Gold-layer script.
+8. Run the quality-check scripts from the `tests` folder.
 
-Download or clone this repository.
+Update the CSV file paths before running the Bronze loading procedure.
 
-Open the SQL scripts in SSMS.
+## Credits
 
-Update the CSV file paths according to the location of the datasets on your computer.
+This project was completed for learning and portfolio purposes by following the **SQL Data Warehouse Project by Data With Baraa**.
 
-Run the database initialization script.
+## Author
 
-Run the Bronze-layer scripts.
-
-Run the Silver-layer scripts.
-
-Run the Gold-layer scripts.
-
-Run the scripts in the tests folder to verify data quality.
-
-Warning: The database initialization script drops and recreates the DataWarehouse database if it already exists. Back up any important data before running it.
-
-What I Learned
-
-This project helped me understand how raw data moves through different warehouse layers before becoming ready for reporting and analysis. I also gained practical experience in ETL development, data cleaning, SQL views, stored procedures, data-quality testing, and star-schema modelling.
-
-Credits
-
-This project was completed for learning and portfolio purposes by following the SQL Data Warehouse Project by Data With Baraa. The original learning material provided the project structure, datasets, and guidance.
-
-Author
-
-Adnan AslamBachelor of Business Data Analytics student interested in SQL, data analytics, business intelligence, and data engineering.
+**Adnan Aslam**  
+Bachelor of Business Data Analytics student interested in SQL, data analytics, business intelligence, and data engineering.
